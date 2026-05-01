@@ -80,7 +80,7 @@ pub(crate) fn last_chunk_mut<const N: usize, T>(slice: &mut [T]) -> Option<&mut 
 /// `i` must be smaller than `j` and `j` must be smaller than the length of the slice,
 /// otherwise `None` is returned.
 pub(crate) fn get_pair_mut<T>(slice: &mut [T], i: usize, j: usize) -> Option<(&mut T, &mut T)> {
-    if i >= j || j > slice.len() {
+    if i >= j || j >= slice.len() {
         None
     } else {
         let (left, right) = slice.split_at_mut(j);
