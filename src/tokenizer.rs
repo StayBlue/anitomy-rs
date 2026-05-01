@@ -425,7 +425,7 @@ impl<'a> Iterator for TokenIterator<'a> {
         }
 
         if let Some(value) = self.tokens.take_if(is_closed_bracket) {
-            self.bracket_level -= 1;
+            self.bracket_level = self.bracket_level.saturating_sub(1);
             return Some(Token::close_bracket(value).with_enclosed(self.bracket_level >= 1));
         }
 
